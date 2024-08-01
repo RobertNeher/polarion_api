@@ -4,6 +4,11 @@ class Configuration:
         self.polarionAPIPrefix = 'rest/v1'
         self.schema = "http"
         self.apiToken = 'eyJraWQiOiJmOWMyMmE2Yy0wYTAyMDkwNi0yYTljZTZhOS0zNzVlMWZiNiIsInR5cCI6IkpXVCIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyTmVoZXIiLCJpZCI6IjA4ZTFmNTM3LWMwYTgwMTJjLTBkNDI0ZjA4LTJlMWQ2MDZjIiwiZXhwIjoxNzI3NjQ3MjAwLCJpYXQiOjE3MjI0MzA5MTF9.wNUFL5r5MKG6NZqkBv9NRReWEQn0obYWMKA4FANB0ijp8gHPa00heedvxDxXPwNM4IR4siWPguYbJW6T5uEZw_4atXohxVQsqu9XWwnXvB4J6eLVPNmNV3Xrg6pP9E1G6yMUE6IVxPGBFouqNd51u3zOGxQJ1Yks7YsYoddNcKSK0l8Q-qwwa6jZlOHam8FmAPQICfMSQ0JoYyHGZJWGITao3GMLB-RNWL5QOyKWXtSm5DWElNZUqUbdn-TF9FcRT7m6goes5WmfLcL5WyUHNx7fJ285NP99TW00RF7POFEAu1Ko8tQUPewdSvCCXb-eIcW6ZWSAwH6Ncc46xBr-1g'
+        self.header = {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": f"Bearer {self.apiToken}"
+        }
         self.dataFilter = {
             "fields[projects]": "@all",
             "fields[document_attachments]": "@all",
