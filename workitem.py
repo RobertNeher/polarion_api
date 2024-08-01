@@ -20,13 +20,18 @@ class WorkItem():
             print(f"Request at endpoint '{endPoint}' failed: {response.status_code}")
             exit
 
+        data = json.loads(response.text)
+
+        for workItem in data["data"]:
+            self.workItems.append(workItem)
+
         config = Configuration()
         data = json.loads(response.text)
         total = int(data["meta"]["totalCount"])
 
         pageCount = 0
 
-        while pageCount <= int(total/100):
+        while pageCount < int(total/100):
 
             if "next" in data["links"]:
                 url = data["links"]["next"]
@@ -56,5 +61,5 @@ class WorkItem():
 if __name__ == "__main__":
     workItems = WorkItem(projectID=None)
 
-    for workItem in workItems.workItems:
-        print(workItem["id"])
+    # for workItem in workItems.workItems:
+    #     print(workItem["id"])
