@@ -1,4 +1,5 @@
 import requests
+import operator
 import json
 
 from configuration import Configuration
@@ -9,9 +10,9 @@ class WorkItem():
         self.workItems = []
 
         if projectID == None:
-            self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/all/workitems'
+            self.url = f"{self.config.schema}://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/all/workitems"
         else:
-            self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects/{projectID}/workitems'
+            self.url = f"{self.config.schema}://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects/{projectID}/workitems"
 
         self.response = requests.get(url=self.url,
                 params=self.config.dataFilter,
@@ -30,6 +31,8 @@ class WorkItem():
 
         for workItem in workItems:
             self.workItems.append(workItem)
+        
+        self.workItems.sort(key=operator.itemgetter("id"))
 
 
     def getWorkItemDetails(self, workItemID: str) -> map:
@@ -40,7 +43,7 @@ class WorkItem():
 
 
 if __name__ == "__main__":
-    workItems = WorkItem(projectID=None)
+    workItems = WorkItem(projectID="drivepilot")
 
     for workItem in workItems.workItems:
         print(workItem["id"])

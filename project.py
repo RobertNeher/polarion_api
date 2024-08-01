@@ -7,7 +7,7 @@ class Project():
     def __init__(self) -> None:
         self.config = Configuration()
         self.projects = []
-        self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects'
+        self.url = f"{self.config.schema}://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects"
         self.response = requests.get(url=self.url,
                 params=self.config.dataFilter,
                 headers={
