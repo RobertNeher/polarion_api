@@ -4,11 +4,15 @@ import json
 from configuration import Configuration
 
 class WorkItem():
-    def __init__(self, projectID: str) -> None:
+    def __init__(self, projectID) -> None:
         self.config = Configuration()
         self.workItems = []
 
-        self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects/{projectID}/workitems'
+        if projectID == None:
+            self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/all/workitems'
+        else:
+            self.url = f'http://{self.config.polarionHost}/{self.config.polarionAPIPrefix}/projects/{projectID}/workitems'
+
         self.response = requests.get(url=self.url,
                 params=self.config.dataFilter,
                 headers={
@@ -36,5 +40,7 @@ class WorkItem():
 
 
 if __name__ == "__main__":
-    workItems = WorkItem("elibrary")
-    print(workItems.getWorkItemDetails("EL-40"))
+    workItems = WorkItem(projectID=None)
+
+    for workItem in workItems.workItems:
+        print(workItem["id"])
