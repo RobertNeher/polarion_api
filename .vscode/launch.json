@@ -16,7 +16,8 @@
       "type": "debugpy",
       "request": "launch",
       "program": "main.py",
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      "args": ["-r", "--port 4711"]
     }
   ]
 }
