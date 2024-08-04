@@ -1,30 +1,29 @@
-import requests
 import json
 
-from configuration import Configuration
-from utils import polarionRequest
+from utilities.configuration import Configuration
+from utilities.utils import polarionRequest
 
 class Project():
     def __init__(self) -> None:
         config = Configuration()
         self.projects = []
 
-        response = polarionRequest(f"/projects")
+        response = polarionRequest("/projects")
 
-        if response == None:
+        if response is None:
             print(f"Request at end point '/projects' failed: {response.status_code}")
-            exit
+            return
 
-        projects = json.loads(response.text)["data"]
+        _projects = json.loads(response.text)["data"]
 
-        for project in projects:
-            self.projects.append(project)
+        for _project in _projects:
+            self.projects.append(_project)
 
 
     def getDetails(self, projectID: str) -> map:
-        for project in self.projects:
-            if project["id"] == projectID:
-                return project["attributes"]
+        for _project in self.projects:
+            if _project["id"] == projectID:
+                return _project["attributes"]
 
 
 if __name__ == "__main__":

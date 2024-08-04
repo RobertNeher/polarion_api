@@ -2,8 +2,8 @@ import requests
 import operator
 import json
 
-from configuration import Configuration
-from utils import polarionRequest
+from utililities.configuration import Configuration
+from utililities.utils import polarionRequest
 
 class WorkItem():
     def __init__(self, projectID) -> None:
@@ -15,7 +15,7 @@ class WorkItem():
             endPoint = f"/projects/{projectID}/workitems"
 
         response = polarionRequest(endPoint)
-        
+
         if response.status_code != 200:
             print(f"Request at endpoint '{endPoint}' failed: {response.status_code}")
             exit
@@ -37,7 +37,7 @@ class WorkItem():
                 url = data["links"]["next"]
             else:
                 url = data["links"]["last"]
-        
+
             response = requests.get(url=url,
                 headers=config.header
             )
@@ -47,7 +47,7 @@ class WorkItem():
 
             for workItem in data["data"]:
                 self.workItems.append(workItem)
-        
+
         self.workItems.sort(key=operator.itemgetter("id"))
 
 
