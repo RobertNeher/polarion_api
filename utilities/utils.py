@@ -1,5 +1,5 @@
 import requests
-from configuration import Configuration
+from utilities.configuration import Configuration
 
 def polarionRequest(apiEndpoint: str) -> map:
     config = Configuration()

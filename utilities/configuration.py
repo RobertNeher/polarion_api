@@ -1,3 +1,4 @@
+import flet as ft
 class Configuration:
     def __init__(self) -> None:
         self.polarionHost = 'localhost/polarion'
@@ -13,7 +14,6 @@ class Configuration:
             "authorization": f"Bearer {self.apiToken}"
         }
         self.dataFilter = {
-            "fields[projects]": "@all",
             "fields[document_attachments]": "@all",
             "fields[document_comments]": "@all",
             "fields[document_parts]": "@all",
@@ -50,3 +50,13 @@ class Configuration:
             "fields[revisions]": "@all",
             "fields[testrecord_attachments]": "@all"
         }
+        self.headerStyle = ft.TextStyle(
+            weight=ft.FontWeight.BOLD,
+            size=16,
+            color=ft.colors.ORANGE
+        )
+        self.normalStyle = ft.TextStyle(
+            weight=ft.FontWeight.NORMAL,
+            size=12,
+            color=ft.colors.DEEP_ORANGE_900
+        )
