@@ -2,8 +2,8 @@ import requests
 import operator
 import json
 
-from utililities.configuration import Configuration
-from utililities.utils import polarionRequest
+from utilities.configuration import Configuration
+from utilities.utils import polarionRequest
 
 class WorkItem():
     def __init__(self, projectID) -> None:
