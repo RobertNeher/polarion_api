@@ -1,6 +1,7 @@
 import requests
 import operator
 import json
+import sys
 
 from utilities.configuration import Configuration
 from utilities.utils import polarionRequest
@@ -59,7 +60,10 @@ class WorkItem():
 
 
 if __name__ == "__main__":
-    workItems = WorkItem(projectID=None)
+    if len(sys.argv) == 2:
+        workItems = WorkItem(projectID=sys.argv[1])
+    else:
+        workItems = WorkItem(projectID=None)
 
     # for workItem in workItems.workItems:
     #     print(workItem["id"])
